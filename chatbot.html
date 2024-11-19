@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuardUp</title>
+  <style>
+    /* General Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+}
+
+/* Chat Container */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 600px;
+  height: 90%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.5rem;
+}
+
+/* Chat Window */
+.chat-window {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Chat Message */
+.message {
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background-color: #e0e0e0;
+  color: black;
+}
+
+/* Footer */
+.chat-footer {
+  display: flex;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.send-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #0056b3;
+}
+
+/* Scrollbar Styling */
+.chat-window::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 10px;
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+  background: #007bff;
+}
+
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <!-- Header -->
+    <header class="chat-header">
+      <h1>Chat with Safeguard</h1>
+    </header>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chat-window">
+      <!-- Messages will be dynamically added here -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="chat-footer">
+      <input 
+        type="text" 
+        id="user-input" 
+        placeholder="Type your message..." 
+        class="chat-input"
+      >
+      <button id="send-button" class="send-button">Send</button>
+    </footer>
+  </div>
+
+  <script>
+   // Select DOM Elements
+const chatWindow = document.getElementById("chat-window");
+const userInput = document.getElementById("user-input");
+const sendButton = document.getElementById("send-button");
+
+// Sample Bot Responses (for demonstration purposes)
+const botReplies = [
+  "That's a great question!",
+  "I'm here to guide you on online safety.",
+  "Can you elaborate on that?",
+  "Stay safe online! Avoid sharing sensitive information.",
+  "Thank you for chatting with me!"
+];
+
+// Function to Append a Message
+function appendMessage(content, sender) {
+  const message = document.createElement("div");
+  message.className = `message ${sender}`;
+  message.textContent = content;
+  chatWindow.appendChild(message);
+  chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to the latest message
+}
+
+// Display Initial Welcome Message
+function displayWelcomeMessage() {
+  const welcomeMessage = "Hello! 👋 I'm Safeguard, your online safety assistant. How can I help you today?";
+  appendMessage(welcomeMessage, "bot");
+}
+
+// Send Message on Button Click
+sendButton.addEventListener("click", () => {
+  const userMessage = userInput.value.trim();
+  if (userMessage) {
+    appendMessage(userMessage, "user");
+    userInput.value = ""; // Clear input field
+
+    // Simulate bot reply with a slight delay
+    setTimeout(() => {
+      const botReply =
+        botReplies[Math.floor(Math.random() * botReplies.length)];
+      appendMessage(botReply, "bot");
+    }, 500);
+  }
+});
+
+// Send Message on Enter Key
+userInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    sendButton.click();
+  }
+});
+
+// Display the Welcome Message When the Page Loads
+window.onload = displayWelcomeMessage;
+  </script>
+</body>
+</html>

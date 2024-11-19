@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .leaderboard-container {
+      width: 90%;
+      max-width: 800px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: relative; /* For the back button positioning */
+    }
+
+    /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #004ba0;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #00357a;
+    }
+
+    /* Tabs Section */
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 0;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .tab.active {
+      background-color: #004ba0;
+      color: #fff;
+    }
+
+    /* Top 3 Players Section */
+    .top-players {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+    }
+
+    .player {
+      text-align: center;
+    }
+
+    .player img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .player .username {
+      font-weight: bold;
+    }
+
+    .player .xp {
+      background-color: #004ba0;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    /* Ranks 4-6 Section */
+    .rank-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .rank-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f4f4f4;
+      border-radius: 10px;
+    }
+
+    .rank-item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .rank-item .flag {
+      margin-left: auto;
+      width: 20px;
+      height: 20px;
+    }
+
+    .rank-item .username {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="leaderboard-container">
+    <!-- Back Button -->
+    <a href="javascript:window.history.back()" class="back-button">Back</a>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="daily">Daily</div>
+      <div class="tab" data-tab="global">Global</div>
+    </div>
+
+    <!-- Top 3 Players -->
+    <div class="top-players">
+      <div class="player">
+        <img src="profile1.jpg" alt="Player 1">
+        <div class="username">Nat Hunter</div>
+        <img src="flag1.png" alt="Country" class="flag">
+        <div class="xp">1500 XP</div>
+      </div>
+      <div class="player">
+        <img src="profile2.jpg" alt="Player 2">
+        <div class="username">CyberHunter</div>
+        <img src="flag2.png" alt="Country" class="flag">
+        <div class="xp">2500 XP</div>
+      </div>
+      <div class="player">
+        <img src="profile3.jpg" alt="Player 3">
+        <div class="username">ByteBuster</div>
+        <img src="flag3.png" alt="Country" class="flag">
+        <div class="xp">1500 XP</div>
+      </div>
+    </div>
+
+    <!-- Ranks 4-6 -->
+    <ul class="rank-list">
+      <li class="rank-item">
+        <img src="profile4.jpg" alt="Player 4">
+        <div class="username">Player 4</div>
+        <img src="flag4.png" alt="Country" class="flag">
+      </li>
+      <li class="rank-item">
+        <img src="profile5.jpg" alt="Player 5">
+        <div class="username">Player 5</div>
+        <img src="flag5.png" alt="Country" class="flag">
+      </li>
+      <li class="rank-item">
+        <img src="profile6.jpg" alt="Player 6">
+        <div class="username">Player 6</div>
+        <img src="flag6.png" alt="Country" class="flag">
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    // Tab Switching Logic
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        // Logic for switching content based on tab can be added here
+        console.log(`${tab.dataset.tab} leaderboard selected`);
+      });
+    });
+  </script>
+</body>
+</html>
