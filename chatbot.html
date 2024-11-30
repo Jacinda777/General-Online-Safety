@@ -17,6 +17,21 @@ body {
   background-color: #f4f4f9;
 }
 
+ /* Back Button */
+ .back-button {
+      text-decoration: none;
+      color: white;
+      background-color: #007bff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+
 /* Chat Container */
 .chat-container {
   display: flex;
@@ -118,6 +133,8 @@ body {
   </style>
 </head>
 <body>
+  <!-- Back Button -->
+  <a href="javascript:window.history.back()" class="back-button">Back</a>
   <div class="chat-container">
     <!-- Header -->
     <header class="chat-header">

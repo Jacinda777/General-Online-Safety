@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Safety Trivia Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      margin: 0;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Back Button */
+    .back-button {
+      text-decoration: none;
+      color: white;
+      background-color: #007bff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    /* Question Box Styles */
+    .question-box {
+      display: flex;
+      align-items: center;
+      background: #0d1117;
+      border: 2px solid #00ff7f;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px #00ff7f;
+    }
+
+    .question-mark {
+      background: #00ff7f;
+      color: #0d1117;
+      font-weight: bold;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .quiz-container {
+      width: 80%;
+      max-width: 600px;
+      background: #161b22;
+      border: 3px solid #00ff7f;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px #00ff7f;
+      position: relative;
+      text-align: center;
+    }
+
+    .quiz-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .option {
+      width: 45%; /* Adjust to balance the space between two options on the same row */
+      background: #161b22;
+      border: 1px solid #00ff7f;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 5px 0;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .option:hover {
+      background: #00ff7f;
+      color: #161b22;
+    }
+
+    /* Navigation Buttons */
+    .nav-buttons {
+      margin-top: 20px;
+    }
+
+    .nav-btn {
+      background: #00ff7f;
+      color: #161b22;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: #00e673;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <!-- Back Button -->
+    <a href="javascript:window.history.back()" class="back-button">Back</a>
+
+    <!-- Quiz Title -->
+    <h1 class="quiz-title">Online Safety Trivia Quiz</h1>
+
+    <!-- Quiz Questions -->
+    <div class="quiz-question" id="question-container">
+      <!-- Question 1 -->
+      <div class="question">
+        <div class="question-box">
+          <div class="question-mark">?</div>
+          <p>1. What is the safest way to shop online?</p>
+        </div>
+        <div class="options">
+          <div class="option"> a. Use secure websites with 'https'</div>
+          <div class="option"> b. Shop using public Wi-Fi</div>
+          <div class="option"> c. Use websites without a padlock</div>
+          <div class="option"> d. Shop through email links</div>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question" style="display: none;">
+        <div class="question-box">
+          <div class="question-mark">?</div>
+          <p>2. What is two-factor authentication (2FA)?</p>
+        </div>
+        <div class="options">
+          <div class="option"> a. A single password</div>
+          <div class="option"> b. A password and a verification code</div>
+          <div class="option"> c. Fingerprint only</div>
+          <div class="option"> d. Email only</div>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question" style="display: none;">
+        <div class="question-box">
+          <div class="question-mark">?</div>
+          <p>3. How can you recognize a phishing email?</p>
+        </div>
+        <div class="options">
+          <div class="option"> a. Look for generic greetings</div>
+          <div class="option"> b. Urgent requests to click links</div>
+          <div class="option"> c. Spelling and grammar errors</div>
+          <div class="option"> d. All of the above</div>
+        </div>
+      </div>
+
+      <!-- Question 4 (Last Question) -->
+      <div class="question" style="display: none;">
+        <div class="question-box">
+          <div class="question-mark">?</div>
+          <p>4. What should you do if you suspect a website is fake?</p>
+        </div>
+        <div class="options">
+          <div class="option"> a. Check the URL for spelling errors</div>
+          <div class="option"> b. Look for a padlock icon and 'https'</div>
+          <div class="option"> c. Avoid entering personal information</div>
+          <div class="option"> d. All of the above</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+      <button class="nav-btn" id="prev-btn" onclick="prevQuestion()">Previous</button>
+      <button class="nav-btn" id="next-btn" onclick="nextQuestion()">Next</button>
+      <button class="nav-btn" id="submit-btn" onclick="submitQuiz()" style="display: none;">Submit</button>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 0;
+    const questions = document.querySelectorAll('.question');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const prevBtn = document.getElementById('prev-btn');
+
+    function showQuestion(index) {
+      questions.forEach((question, i) => {
+        question.style.display = i === index ? 'block' : 'none';
+      });
+
+      // Update button visibility
+      prevBtn.style.display = index === 0 ? 'none' : 'inline-block';
+      nextBtn.style.display = index === questions.length - 1 ? 'none' : 'inline-block';
+      submitBtn.style.display = index === questions.length - 1 ? 'inline-block' : 'none';
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    function submitQuiz() {
+      window.location.href = 'scores.html';
+    }
+
+    // Initialize
+    showQuestion(currentQuestion);
+  </script>
+</body>
+</html>

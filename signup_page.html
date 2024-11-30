@@ -5,199 +5,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+   /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f4f4f4;
-    }
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+}
 
-    /* Container Styling */
-    .container {
-      display: flex;
-      width: 80%;
-      max-width: 1200px;
-      height: 700px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
+/* Container Styling */
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 90%; /* Adjust for smaller screens */
+  max-width: 1200px;
+  height: auto; /* Allow the height to adjust dynamically */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
-    /* Left Section */
-    .left-section {
-      flex: 1;
-      background-color: #eae2f8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
-    }
+/* Left Section */
+.left-section {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('images/signup.jpg') no-repeat center center/cover;
+  overflow: hidden;
+}
 
-    .left-section .illustration img {
-      width: 80%;
-      margin-bottom: 20px;
-    }
+.left-section .illustration-text {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  color: #fff; /* White text for readability */
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5); /* Add text shadow for contrast */
+  z-index: 2;
+  width: 80%; /* Adjust width for better fit */
+}
 
-    .left-section h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #5c4ca8;
-    }
+.left-section h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
 
-    .left-section p {
-      font-size: 1rem;
-      color: #333;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
+.left-section p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
 
-    .left-section .signin-btn {
-      background-color: #5c4ca8;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
+.left-section .signin-btn {
+  background-color: #5c4ca8;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
 
-    .left-section .signin-btn:hover {
-      background-color: #4a3b85;
-    }
+.left-section .signin-btn:hover {
+  background-color: #4a3b85;
+}
 
-    /* Right Section */
-    .right-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+/* Right Section */
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-    .right-section .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #5c4ca8;
-    }
+.right-section h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #5c4ca8;
+}
 
-    .right-section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
+.right-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
 
-    .signup-form {
-      width: 100%;
-      max-width: 300px;
-    }
+.signup-form {
+  width: 100%;
+  max-width: 300px;
+}
 
-    .input-group {
-      display: flex;
-      align-items: center;
-      background-color: #f4f4f4;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
-    }
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f4;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
 
-    .input-group i {
-      margin-right: 10px;
-      font-size: 1.2rem;
-      color: #666;
-    }
+.input-group i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #666;
+}
 
-    .input-group input {
-      border: none;
-      outline: none;
-      width: 100%;
-      background: none;
-      font-size: 1rem;
-    }
+.input-group input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: none;
+  font-size: 1rem;
+}
 
-    .signup-btn {
-      background-color: #5c4ca8;
-      color: #fff;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
+.signup-btn {
+  background-color: #5c4ca8;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
 
-    .signup-btn:hover {
-      background-color: #4a3b85;
-    }
+.signup-btn:hover {
+  background-color: #4a3b85;
+}
 
-    .or {
-      text-align: center;
-      margin: 20px 0;
-      font-size: 0.9rem;
-      color: #666;
-    }
+.or {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
 
-    .social-login a {
-      margin: 0 10px;
-      font-size: 1.5rem;
-      color: #666;
-      text-decoration: none;
-    }
+.social-login a {
+  margin: 0 10px;
+  font-size: 1.5rem;
+  color: #666;
+  text-decoration: none;
+}
 
-    .social-login a:hover {
-      color: #5c4ca8;
-    }
+.social-login a:hover {
+  color: #5c4ca8;
+}
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        height: auto;
-      }
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack sections vertically */
+    height: auto;
+  }
 
-      .left-section {
-        display: none;
-      }
+  .left-section {
+    height: 300px; /* Limit height for smaller screens */
+    background-size: cover;
+  }
 
-      .right-section {
-        width: 100%;
-      }
-    }
+  .right-section {
+    width: 100%;
+  }
+
+  .left-section .illustration-text h1 {
+    font-size: 1.5rem; /* Smaller heading for mobile */
+  }
+
+  .left-section .illustration-text p {
+    font-size: 0.9rem; /* Smaller text for mobile */
+  }
+}
+
   </style>
   <title>Sign Up | GuardUp</title>
 </head>
 <body>
   <div class="container">
-    <!-- Left Section -->
     <div class="left-section">
       <div class="illustration">
-        <img src="illustration.png" alt="Illustration">
+        <div class="illustration-text">
+          <h1>Welcome Back to GuardUp!</h1>
+          <p>
+            Sign in to access resources, support, and a secure platform for reporting incidents. Together we can create a safer community.
+          </p>
+          <a href="signin_page.html"><button class="signin-btn">Sign In</button></a>
+        </div>
       </div>
-      <h1>Welcome Back to GuardUp!</h1>
-      <p>
-        Sign in to access resources, support, and a secure platform for reporting incidents. Together we can create a safer community.
-      </p>
-      <a href="signin_page.html"><button class="signin-btn">Sign In</button></a>
     </div>
+    
 
     <!-- Right Section -->
     <div class="right-section">
       <h1 class="logo">GuardUp</h1>
       <h2>Create an Account</h2>
-      <form class="signup-form">
+      <form class="signup-form" action="chatbot_intro.html" method="GET">
         <div class="input-group">
           <i class="fas fa-user"></i>
           <input type="text" placeholder="First Name" required>
@@ -223,6 +239,7 @@
           <input type="password" placeholder="Confirm Password" required>
         </div>
         <a href="chatbot_intro.html"><button class="signup-btn">Sign Up</button></a>
+        
       </form>
       <p class="or">Or Sign Up using</p>
       <div class="social-login">
@@ -232,8 +249,5 @@
       </div>
     </div>
   </div>
-  <script>
-    
-  </script>
 </body>
 </html>

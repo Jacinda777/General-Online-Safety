@@ -6,115 +6,151 @@
   <title>Dashboard</title>
   <style>
     body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f9;
-}
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
 
-.container {
-  width: 90%;
-  margin: auto;
-  padding: 20px;
-}
+    .container {
+      width: 90%;
+      margin: auto;
+      padding: 20px;
+    }
 
-/* Back Button */
-.back-button {
-  text-decoration: none;
-  color: white;
-  background-color: #007bff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  display: inline-block;
-  margin-bottom: 20px;
-}
+    /* Back Button */
+    .back-button {
+      text-decoration: none;
+      color: white;
+      background-color: #007bff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
 
-.back-button:hover {
-  background-color: #0056b3;
-}
+    .back-button:hover {
+      background-color: #0056b3;
+    }
 
-/* Dashboard Section */
-.dashboard {
-  background-color: #0000ff;
-  color: white;
-  border-radius: 10px;
-  padding: 30px;
-  text-align: center;
-  margin-bottom: 30px;
-  position: relative;
-}
+    /* Dashboard Section */
+    .dashboard {
+      background-color: #0000ff;
+      color: white;
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
 
-.dashboard h1 {
-  margin: 0 0 20px 0;
-}
+    .dashboard h1 {
+      margin: 0 0 20px 0;
+    }
 
-.dashboard-button {
-  background-color: white;
-  color: #0000ff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .dashboard-button {
+      background-color: white;
+      color: #0000ff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.dashboard-button:hover {
-  background-color: #e0e0e0;
-}
+    .dashboard-button:hover {
+      background-color: #e0e0e0;
+    }
 
-/* Explore Section */
-.explore {
-  margin-bottom: 30px;
-}
+    /* Explore Section */
+    .explore {
+      margin-bottom: 30px;
+    }
 
-.explore h2 {
-  margin-bottom: 10px;
-}
+    .explore h2 {
+      margin-bottom: 10px;
+    }
 
-.explore-cards {
+    .explore-cards {
   display: flex;
-  overflow-x: auto;
   gap: 10px;
+  padding-bottom: 10px; /* Ensure content doesn't touch the edge */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for touch devices */
 }
 
-.card {
-  text-align: center;
-  width: 120px;
-  flex-shrink: 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: white;
+    .card {
+      text-align: center;
+      flex-shrink: 0;
+      width: 170px; /* Set width for the cards */
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: white;
+      scroll-snap-align: start;
+      transition: transform 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Distribute content evenly within the card */
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;  /* Let the image height adjust based on the width */
+      border-radius: 5px;
+      margin-bottom: 10px;
+      object-fit: cover; /* Ensures the image covers the available space without distortion */
+
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Add hover effect for the card */
+    }
+
+    /* Chatbot and FAQ Section */
+    .extras {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chatbot, .faq {
+      text-align: center;
+      flex: 1;
+    }
+
+    .chatbot img, .faq img {
+      max-width: 50%;
+      margin-bottom: 10px;
+    }
+
+    .chatbot p, .faq p {
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+    a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+a {
+  color: unset;
 }
 
-.card img {
-  max-width: 100%;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .explore-cards {
+        gap: 5px;
+      }
 
-/* Chatbot and FAQ Section */
-.extras {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+      .card {
+        width: 120px; /* Reduce the width for smaller screens */
+      }
+    }
 
-.chatbot, .faq {
-  text-align: center;
-  flex: 1;
-}
-
-.chatbot img, .faq img {
-  max-width: 80%;
-  margin-bottom: 10px;
-}
-
-.chatbot p, .faq p {
-  font-size: 1.1em;
-  font-weight: bold;
-}
-
+    @media (max-width: 480px) {
+      .card {
+        width: 100px; /* Even smaller cards on very small screens */
+      }
+    }
   </style>
 </head>
 <body>
@@ -129,45 +165,62 @@
     </div>
 
     <!-- Explore Section -->
-    <section class="explore">
-      <h2>Explore</h2>
-      <div class="explore-cards">
-        <div class="card">
-          <img src="quiz-icon.png" alt="Quiz Time">
+<section class="explore">
+    <h2>Explore</h2>
+    <div class="explore-cards">
+      <div class="card">
+        <a href="quiz.html">
+          <img src="images/quiz.jpg" alt="Quiz Time">
           <p>Quiz Time</p>
-        </div>
-        <div class="card">
-          <img src="spam-icon.png" alt="Spot the Spam">
-          <p>Spot the Spam</p>
-        </div>
-        <div class="card">
-          <img src="password-icon.png" alt="Password Power-Up">
-          <p>Password Power-Up</p>
-        </div>
-        <div class="card">
-          <img src="adventure-icon.png" alt="Adventure">
-          <p>Adventure</p>
-        </div>
-        <div class="card">
-          <img src="cyber-bingo-icon.png" alt="Cyber Bingo">
-          <p>Cyber Bingo</p>
-        </div>
-        <div class="card">
-          <img src="crossword-icon.png" alt="Crossword">
-          <p>Crossword</p>
-        </div>
+        </a>
       </div>
-    </section>
+      <div class="card">
+        <a href="#">
+          <img src="images/spam.jpg" alt="Spot the Spam">
+          <p>Spot the Spam</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="#">
+          <img src="images/password.jpg" alt="Password Power-Up">
+          <p>Password Power-Up</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="#">
+          <img src="images/adventure.jpg" alt="Adventure">
+          <p>Adventure</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="#">
+          <img src="images/bingo.png" alt="Cyber Bingo">
+          <p>Cyber Bingo</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="#">
+          <img src="images/crossword.jpg" alt="Crossword">
+          <p>Crossword</p>
+        </a>
+      </div>
+    </div>
+  </section>
+  
 
     <!-- Chatbot and FAQ Section -->
     <section class="extras">
       <div class="chatbot">
-        <img src="chatbot-icon.png" alt="Chatbot">
-        <p>Chat with SafeGuard</p>
+        <a href="chatbot.html">
+          <img src="images/bot.jpg" alt="Chatbot">
+          <p>Chat with SafeGuard</p>
+        </a>
       </div>
       <div class="faq">
-        <img src="faq-icon.png" alt="FAQ">
+        <a href="faq.html">
+        <img src="images/faq.jpg" alt="FAQ">
         <p>FAQ</p>
+      </a>
       </div>
     </section>
   </div>
