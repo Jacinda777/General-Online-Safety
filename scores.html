@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Scores</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      margin: 0;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Back Button */
+    .back-button {
+      text-decoration: none;
+      color: white;
+      background-color: #007bff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    /* Scores Page Container */
+    .scores-container {
+      width: 80%;
+      max-width: 600px;
+      background: #161b22;
+      border: 3px solid #00ff7f;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 15px #00ff7f;
+      text-align: center;
+    }
+
+    .scores-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .scores-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .scores-list li {
+      background: #0d1117;
+      border: 2px solid #00ff7f;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .total-score {
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+
+    .finish-button {
+      background: #00ff7f;
+      color: #161b22;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .finish-button:hover {
+      background: #00e673;
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Button -->
+  <a href="javascript:window.history.back()" class="back-button">Back</a>
+
+  <!-- Scores Container -->
+  <div class="scores-container">
+    <h1 class="scores-title">Quiz Scores</h1>
+    <ul class="scores-list" id="scores-list">
+      <!-- Scores for each question will be dynamically generated here -->
+    </ul>
+    <div class="total-score" id="total-score">Total Marks: 0</div>
+    <button class="finish-button" onclick="goToLeaderboard()">Finish</button>
+  </div>
+
+  <script>
+    // Mock Data for Quiz Results
+    const quizResults = [
+      { question: 1, correct: true, marks: 10 },
+      { question: 2, correct: false, marks: 0 },
+      { question: 3, correct: true, marks: 10 },
+      { question: 4, correct: true, marks: 10 }
+    ];
+
+    // Populate Scores List
+    function populateScores() {
+      const scoresList = document.getElementById('scores-list');
+      const totalScoreElement = document.getElementById('total-score');
+      let totalMarks = 0;
+
+      quizResults.forEach(result => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+          <strong>Question ${result.question}:</strong> 
+          ${result.correct ? "Correct ✅" : "Incorrect ❌"} 
+          - Marks: ${result.marks}
+        `;
+        scoresList.appendChild(listItem);
+        totalMarks += result.marks;
+      });
+
+      // Update Total Marks
+      totalScoreElement.textContent = `Total Marks: ${totalMarks}`;
+    }
+
+    // Navigate to Leaderboard
+    function goToLeaderboard() {
+      window.location.href = "leaderboard.html"; // Replace with your leaderboard page URL
+    }
+
+    // Initialize Scores Page
+    populateScores();
+  </script>
+</body>
+</html>

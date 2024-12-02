@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>SafeGuard</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -64,49 +64,67 @@
 
     /* Explore Section */
     .explore {
-      margin-bottom: 30px;
+      text-align: center;
+      margin: 20px;
     }
 
     .explore h2 {
-      margin-bottom: 10px;
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
 
     .explore-cards {
-  display: flex;
-  gap: 10px;
-  padding-bottom: 10px; /* Ensure content doesn't touch the edge */
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling for touch devices */
-}
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 10px;
+      position: relative;
+      margin: 0 -20px; /* Makes the cards at edges visible */
+    }
+
+    .explore-cards::-webkit-scrollbar {
+      display: none;
+    }
 
     .card {
-      text-align: center;
-      flex-shrink: 0;
-      width: 170px; /* Set width for the cards */
+      flex: 0 0 auto;
+      width: 200px;
       border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 10px;
-      background-color: white;
-      scroll-snap-align: start;
-      transition: transform 0.3s ease-in-out;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; /* Distribute content evenly within the card */
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      background-color: #fff;
+      text-align: center;
+      transition: transform 0.3s ease;
+      margin-right: 10px;
+    }
+
+    .card:last-child {
+      margin-right: 0;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
     }
 
     .card img {
       width: 100%;
-      height: auto;  /* Let the image height adjust based on the width */
-      border-radius: 5px;
-      margin-bottom: 10px;
-      object-fit: cover; /* Ensures the image covers the available space without distortion */
-
+      height: 150px;
+      object-fit: cover;
     }
 
-    .card:hover {
-      transform: scale(1.05); /* Add hover effect for the card */
+    .card p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      padding: 0 10px;
+      color: #333;
     }
 
+    .card a {
+      text-decoration: none;
+      color: inherit;
+    }
     /* Chatbot and FAQ Section */
     .extras {
       display: flex;
@@ -204,6 +222,12 @@ a {
           <p>Crossword</p>
         </a>
       </div>
+      <div class="card">
+        <a href="#">
+          <img src="images/did you know.jpg" alt="Did you know">
+          <p>Did you know</p>
+        </a>
+      </div>
     </div>
   </section>
   
@@ -224,7 +248,5 @@ a {
       </div>
     </section>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
