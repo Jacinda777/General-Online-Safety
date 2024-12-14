@@ -3,139 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeGuard</title>
-  <style>
-    /* General Styling */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f9;
-}
-
- /* Back Button */
- .back-button {
-      text-decoration: none;
-      color: white;
-      background-color: #007bff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-    .back-button:hover {
-      background-color: #0056b3;
-    }
-
-/* Chat Container */
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  max-width: 600px;
-  height: 90%;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-/* Header */
-.chat-header {
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 1.5rem;
-}
-
-/* Chat Window */
-.chat-window {
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  background-color: #f9f9f9;
-}
-
-/* Chat Message */
-.message {
-  max-width: 75%;
-  padding: 10px 15px;
-  border-radius: 15px;
-  font-size: 1rem;
-  word-wrap: break-word;
-}
-
-.message.user {
-  align-self: flex-end;
-  background-color: #007bff;
-  color: white;
-}
-
-.message.bot {
-  align-self: flex-start;
-  background-color: #e0e0e0;
-  color: black;
-}
-
-/* Footer */
-.chat-footer {
-  display: flex;
-  padding: 10px;
-  background-color: #f1f1f1;
-}
-
-.chat-input {
-  flex: 1;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #cccccc;
-  border-radius: 20px;
-  margin-right: 10px;
-}
-
-.send-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.send-button:hover {
-  background-color: #0056b3;
-}
-
-/* Scrollbar Styling */
-.chat-window::-webkit-scrollbar {
-  width: 5px;
-}
-
-.chat-window::-webkit-scrollbar-thumb {
-  background: #cccccc;
-  border-radius: 10px;
-}
-
-.chat-window::-webkit-scrollbar-thumb:hover {
-  background: #007bff;
-}
-
-  </style>
+  <link rel="stylesheet" href="chatbot.css">
+  <title>Chatbot</title>
 </head>
 <body>
-  <!-- Back Button -->
-  <a href="javascript:window.history.back()" class="back-button">Back</a>
-  <div class="chat-container">
+  <div id="sidebar-container">
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+      <div class="header">
+          <img src="images/logo.png" alt="Logo" style="width: 10vw; height: 20vh;">
+          <button id="minimize-btn" class="toggle-btn">&#10005;</button>
+          <button id="maximize-btn" class="toggle-btn" style="display: none;">&#9776;</button>
+      </div>      
+      <ul class="menu">
+        <li><a href="chatbot_dashboard.html"><span class="icon">🏠</span><span class="text">Home</span></a></li>
+        <li><a href="#"><span class="icon">📚</span><span class="text">Did You Know</span></a></li>
+        <li><a href="faq.html"><span class="icon">🔐</span><span class="text">FAQ</span></a></li>
+        <li><a href="leaderboard.html"><span class="icon">🔐</span><span class="text">Leaderboard</span></a></li>
+        <li><a href="chatbot.html"><span class="icon">🤖</span><span class="text">Chatbot</span></a></li>
+      </ul>
+      <div class="footer">
+        <ul>
+          <li><a href="index.html"><span class="icon">🚪</span><span class="text">Log Out</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <section class="chat-container">
     <!-- Header -->
     <header class="chat-header">
       <h1>Chat with Safeguard</h1>
@@ -157,8 +51,30 @@ body {
       <button id="send-button" class="send-button">Send</button>
     </footer>
   </div>
+</section>
 
   <script>
+     // JavaScript for Sidebar Toggle
+   const sidebar = document.getElementById("sidebar");
+    const minimizeBtn = document.getElementById("minimize-btn");
+    const maximizeBtn = document.getElementById("maximize-btn");
+
+    // Minimize the sidebar
+    minimizeBtn.addEventListener("click", () => {
+      console.debug("Minimizing sidebar");
+      sidebar.classList.add("minimized");
+      minimizeBtn.style.display = "none";
+      maximizeBtn.style.display = "block";
+    });
+
+    // Maximize the sidebar
+    maximizeBtn.addEventListener("click", () => {
+      console.debug("Maximizing sidebar");
+      sidebar.classList.remove("minimized");
+      maximizeBtn.style.display = "none";
+      minimizeBtn.style.display = "block";
+    });
+
    // Select DOM Elements
 const chatWindow = document.getElementById("chat-window");
 const userInput = document.getElementById("user-input");

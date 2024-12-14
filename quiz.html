@@ -4,126 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SafeGuard</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0d1117;
-      margin: 0;
-      color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    /* Back Button */
-    .back-button {
-      text-decoration: none;
-      color: white;
-      background-color: #007bff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-
-    /* Question Box Styles */
-    .question-box {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border: 2px solid #007bff;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 0 10px #007bff;
-    }
-
-    .question-mark {
-      background: #007bff;
-      color: #fff;
-      font-weight: bold;
-      font-size: 1.5rem;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      margin-right: 15px;
-    }
-
-    .quiz-container {
-      width: 80%;
-      max-width: 600px;
-      background: #161b22;
-      border: 3px solid #007bff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 15px #007bff;
-      position: relative;
-      text-align: center;
-    }
-
-    .quiz-title {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .question {
-      margin-bottom: 20px;
-    }
-
-    .options {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .option {
-      width: 45%; /* Adjust to balance the space between two options on the same row */
-      background: #fff;
-      border: 1px solid #007bff;
-      border-radius: 5px;
-      padding: 10px;
-      margin: 5px 0;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .option:hover {
-      background: #007bff;
-      color: #fff;
-    }
-
-    /* Navigation Buttons */
-    .nav-buttons {
-      margin-top: 20px;
-    }
-
-    .nav-btn {
-      background: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .nav-btn:hover {
-      background: #007b77;
-    }
-  </style>
+ <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-  <div class="quiz-container">
-    <!-- Back Button -->
-    <a href="javascript:window.history.back()" class="back-button">Back</a>
+  <div id="sidebar-container">
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+      <div class="header">
+          <img src="images/logo.png" alt="Logo" style="width: 10vw; height: 20vh;">
+          <button id="minimize-btn" class="toggle-btn">&#10005;</button>
+          <button id="maximize-btn" class="toggle-btn" style="display: none;">&#9776;</button>
+      </div>      
+      <ul class="menu">
+        <li><a href="chatbot_dashboard.html"><span class="icon">🏠</span><span class="text">Home</span></a></li>
+        <li><a href="#"><span class="icon">📚</span><span class="text">Did You Know</span></a></li>
+        <li><a href="faq.html"><span class="icon">🔐</span><span class="text">FAQ</span></a></li>
+        <li><a href="leaderboard.html"><span class="icon">🔐</span><span class="text">Leaderboard</span></a></li>
+        <li><a href="chatbot.html"><span class="icon">🤖</span><span class="text">Chatbot</span></a></li>
+      </ul>
+      <div class="footer">
+        <ul>
+          <li><a href="index.html"><span class="icon">🚪</span><span class="text">Log Out</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <div class="quiz-container">
     <!-- Quiz Title -->
     <h1 class="quiz-title">Online Safety Trivia Quiz</h1>
 
@@ -195,6 +102,27 @@
   </div>
 
   <script>
+     // JavaScript for Sidebar Toggle
+   const sidebar = document.getElementById("sidebar");
+    const minimizeBtn = document.getElementById("minimize-btn");
+    const maximizeBtn = document.getElementById("maximize-btn");
+
+    // Minimize the sidebar
+    minimizeBtn.addEventListener("click", () => {
+      console.debug("Minimizing sidebar");
+      sidebar.classList.add("minimized");
+      minimizeBtn.style.display = "none";
+      maximizeBtn.style.display = "block";
+    });
+
+    // Maximize the sidebar
+    maximizeBtn.addEventListener("click", () => {
+      console.debug("Maximizing sidebar");
+      sidebar.classList.remove("minimized");
+      maximizeBtn.style.display = "none";
+      minimizeBtn.style.display = "block";
+    });
+    
     let currentQuestion = 0;
     const questions = document.querySelectorAll('.question');
     const nextBtn = document.getElementById('next-btn');

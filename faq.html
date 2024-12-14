@@ -4,88 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SafeGuard</title>
-  <style>
-    body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-}
-/* Back Button */
-.back-button {
-      text-decoration: none;
-      color: white;
-      background-color: #007bff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-.faq-container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.faq-item {
-  margin-bottom: 10px;
-}
-
-.faq-question {
-  width: 100%;
-  text-align: left;
-  background: #007bff;
-  color: white;
-  padding: 10px 15px;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-}
-
-.faq-question:hover {
-  background: #0000ff;
-}
-
-.faq-answer {
-  display: none;
-  padding: 15px;
-  background: #f1f1f1;
-  border-left: 4px solid #007bff;
-  margin-top: 5px;
-  border-radius: 4px;
-}
-
-.faq-answer p {
-  margin: 0;
-  color: #333;
-}
-
-.faq-answer ul {
-  margin: 10px 0 0 20px;
-  padding: 0;
-  list-style-type: disc;
-  color: #333;
-}
-
-  </style>
+  <link rel="stylesheet" href="faq.css">
 </head>
 <body>
+  <div id="sidebar-container">
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+      <div class="header">
+          <img src="images/logo.png" alt="Logo" style="width: 10vw; height: 20vh;">
+          <button id="minimize-btn" class="toggle-btn">&#10005;</button>
+          <button id="maximize-btn" class="toggle-btn" style="display: none;">&#9776;</button>
+      </div>      
+      <ul class="menu">
+        <li><a href="chatbot_dashboard.html"><span class="icon">🏠</span><span class="text">Home</span></a></li>
+        <li><a href="#"><span class="icon">📚</span><span class="text">Did You Know</span></a></li>
+        <li><a href="faq.html"><span class="icon">🔐</span><span class="text">FAQ</span></a></li>
+        <li><a href="leaderboard.html"><span class="icon">🔐</span><span class="text">Leaderboard</span></a></li>
+        <li><a href="chatbot.html"><span class="icon">🤖</span><span class="text">Chatbot</span></a></li>
+      </ul>
+      <div class="footer">
+        <ul>
+          <li><a href="index.html"><span class="icon">🚪</span><span class="text">Log Out</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="faq-container">
-     <!-- Back Button -->
-     <a href="javascript:window.history.back()" class="back-button">Back</a>
-    <h1>FAQs for General Online Safety</h1>
+    <h1 >FAQs for General Online Safety</h1>
     <div class="faq-item">
       <button class="faq-question">1.What is online safety, and why is it important?</button>
       <div class="faq-answer">
@@ -110,7 +55,6 @@ h1 {
         <p>
           Look for red flags such as:
           <ul>
-            <li>Generic greetings (e.g., "Dear User").</li>
             <li>Spelling and grammar mistakes.</li>
             <li>Urgent requests to click a link or provide sensitive information.</li>
             <li>Suspicious sender email addresses.</li>
@@ -260,7 +204,28 @@ h1 {
       </div>
     <!-- Add more FAQ items here -->
   </div>
+  </div>
   <script>
+         // JavaScript for Sidebar Toggle
+   const sidebar = document.getElementById("sidebar");
+    const minimizeBtn = document.getElementById("minimize-btn");
+    const maximizeBtn = document.getElementById("maximize-btn");
+
+    // Minimize the sidebar
+    minimizeBtn.addEventListener("click", () => {
+      console.debug("Minimizing sidebar");
+      sidebar.classList.add("minimized");
+      minimizeBtn.style.display = "none";
+      maximizeBtn.style.display = "block";
+    });
+
+    // Maximize the sidebar
+    maximizeBtn.addEventListener("click", () => {
+      console.debug("Maximizing sidebar");
+      sidebar.classList.remove("minimized");
+      maximizeBtn.style.display = "none";
+      minimizeBtn.style.display = "block";
+    });
   document.querySelectorAll('.faq-question').forEach(button => {
   button.addEventListener('click', () => {
     const answer = button.nextElementSibling;
